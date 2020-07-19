@@ -3,7 +3,7 @@
     package="study.common.module_test">
 
     <application>
-        <activity android:name=".view.TestActivity">
+        <activity android:name="study.common.module_test.view.TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

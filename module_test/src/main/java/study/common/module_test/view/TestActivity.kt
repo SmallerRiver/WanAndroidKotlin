@@ -1,26 +1,21 @@
 package study.common.module_test.view
 
-import androidx.lifecycle.Observer
-import kotlinx.android.synthetic.main.activity_test.*
+import com.alibaba.android.arouter.facade.annotation.Route
+import study.common.common.base.constant.TEST_ACTIVITY
 import study.common.common.view.BaseActivity
 import study.common.module_test.R
+import study.common.module_test.databinding.ActivityTestBinding
 import study.common.module_test.viewmodel.TestViewModel
 
-class TestActivity : BaseActivity<TestViewModel>() {
+@Route(path = TEST_ACTIVITY)
+class TestActivity : BaseActivity<ActivityTestBinding,TestViewModel>() {
     override fun getLayoutId(): Int =R.layout.activity_test
 
-    override fun bindingViewModel():Class<TestViewModel>{
-        return TestViewModel::class.java
-    }
+    override fun bindingViewModel()=TestViewModel::class.java
 
     override fun init() {
-        mViewModel.getTimeDateObserve().observe(this, Observer {
-            currMsg.text=it
-        })
+        mBinding.viewModel=mViewModel
         mViewModel.refreshCurrData()
-        refreshMsg.setOnClickListener {
-            mViewModel.refreshCurrData()
-        }
     }
 
 }

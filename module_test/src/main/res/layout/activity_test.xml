@@ -1,29 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.TestActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/currMsg"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="当前信息:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <data>
 
-    <Button
-        android:id="@+id/refreshMsg"
-        android:layout_marginTop="10dp"
-        android:text="刷新"
-        app:layout_constraintTop_toBottomOf="@id/currMsg"
-        app:layout_constraintStart_toStartOf="@id/currMsg"
-        app:layout_constraintEnd_toEndOf="@id/currMsg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <variable
+            name="viewModel"
+            type="study.common.module_test.viewmodel.TestViewModel" />
+    </data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/holo_red_dark"
+        tools:context=".view.TestActivity">
+
+        <TextView
+            android:id="@+id/currMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.mCurrTimeData}"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/refreshMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="刷新"
+            android:onClick="@{viewModel::refreshCurrData}"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="@id/currMsg"
+            app:layout_constraintStart_toStartOf="@id/currMsg"
+            app:layout_constraintTop_toBottomOf="@id/currMsg" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
